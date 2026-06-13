@@ -1,0 +1,31 @@
+In Aufgabe 2.1 habe ich die Methode Shop#accept angeschaut. Diese Methode nimmt einen Auftrag nur an, wenn bestimmte Bedingungen erfüllt sind. Gravel-Bikes und E-Bikes werden abgelehnt. Außerdem darf ein Kunde nicht schon einen offenen Auftrag haben. Dazu darf die Warteschlange nicht voll sein. Es dürfen also vor dem neuen Auftrag höchstens vier offene Aufträge da sein, damit danach maximal fünf offene Aufträge vorhanden sind.
+
+Äquivalenzklassen:
+
+Beim Fahrradtyp gibt es gültige und ungültige Fälle. Gültig sind RACE, SINGLE_SPEED und FIXIE. Ungültig sind GRAVEL und EBIKE.
+
+Beim Kunden ist gültig, wenn der Kunde noch keinen offenen Auftrag hat. Ungültig ist, wenn der Kunde schon einen offenen Auftrag hat.
+
+Bei der Anzahl der offenen Aufträge ist gültig, wenn 0 bis 4 Aufträge offen sind. Ungültig ist es, wenn schon 5 oder mehr Aufträge offen sind.
+
+Grenzwertanalyse:
+
+Der wichtigste Grenzwert ist die maximale Anzahl an offenen Aufträgen. Bei 0 offenen Aufträgen wird ein gültiger Auftrag angenommen. Bei 4 offenen Aufträgen wird ein gültiger Auftrag auch noch angenommen, weil danach genau 5 Aufträge offen sind. Bei 5 offenen Aufträgen wird ein neuer Auftrag abgelehnt, weil die Warteschlange schon voll ist.
+
+Konkrete Testfälle:
+
+Ich teste gültige Fahrradtypen wie RACE, SINGLE_SPEED und FIXIE. Diese sollen angenommen werden, wenn der Kunde noch keinen offenen Auftrag hat und die Warteschlange nicht voll ist.
+
+Ich teste auch ungültige Fahrradtypen wie GRAVEL und EBIKE. Diese sollen abgelehnt werden.
+
+Außerdem teste ich den Fall, dass derselbe Kunde schon einen offenen Auftrag hat. Dann soll der neue Auftrag abgelehnt werden.
+
+Für die Grenzwerte teste ich 4 offene Aufträge und 5 offene Aufträge. Bei 4 offenen Aufträgen soll ein weiterer gültiger Auftrag noch angenommen werden. Bei 5 offenen Aufträgen soll ein weiterer Auftrag abgelehnt werden.
+
+In Aufgabe 2.2 habe ich diese Testfälle mit JUnit umgesetzt. Für Order benutze ich Mockito, weil die Klasse Order noch nicht richtig fertig ist. Die Methoden getBicycleType() und getCustomer() werfen sonst eine UnsupportedOperationException.
+
+Mit Mockito kann ich fake Order-Objekte erstellen und selbst festlegen, was getBicycleType() und getCustomer() zurückgeben sollen. So kann ich Shop#accept testen, ohne dass Order wirklich fertig implementiert sein muss.
+
+Wichtig ist: Shop#accept selbst wurde nicht gemockt. Ich benutze echte Shop-Objekte, damit wirklich die vorhandene accept-Methode getestet wird.
+
+Der Test mit ./gradlew clean test war erfolgreich.

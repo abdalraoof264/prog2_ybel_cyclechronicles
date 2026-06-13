@@ -13,7 +13,6 @@ Grenzwertanalyse:
 Der wichtigste Grenzwert ist die maximale Anzahl an offenen Aufträgen. Bei 0 offenen Aufträgen wird ein gültiger Auftrag angenommen. Bei 4 offenen Aufträgen wird ein gültiger Auftrag auch noch angenommen, weil danach genau 5 Aufträge offen sind. Bei 5 offenen Aufträgen wird ein neuer Auftrag abgelehnt, weil die Warteschlange schon voll ist.
 
 Konkrete Testfälle:
-
 Ich teste gültige Fahrradtypen wie RACE, SINGLE_SPEED und FIXIE. Diese sollen angenommen werden, wenn der Kunde noch keinen offenen Auftrag hat und die Warteschlange nicht voll ist.
 
 Ich teste auch ungültige Fahrradtypen wie GRAVEL und EBIKE. Diese sollen abgelehnt werden.
